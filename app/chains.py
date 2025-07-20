@@ -35,7 +35,7 @@ class Chain:
         res = chain_extract.invoke(input={"page_data": cleaned_text})
         try:
             json_parse = JsonOutputParser()
-            json_res = json_parse.parse(res.content)
+            res = json_parse.parse(res.content)
         except OutputParserException:
             raise OutputParserException(
                 "Context too big. Unable to parse in =>extract_jobs"

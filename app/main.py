@@ -4,6 +4,8 @@ from portfolio import Portfolio
 from utils import clean_text
 from langchain_community.document_loaders import WebBaseLoader
 
+import os
+os.environ["STREAMLIT_DISABLE_WATCHDOG_WARNINGS"] = "true"
 
 def create_streamlit_app(llm , portfolio, clean_text):
     st.title(' 📩 Cold Email Generator')
