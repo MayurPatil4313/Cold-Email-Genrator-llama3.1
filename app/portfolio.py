@@ -1,7 +1,7 @@
 import pandas as pd
 import uuid
 import os
-# os.add_dll_directory(r"C:\Users\mayur\AppData\Local\Programs\Python\Python311\Lib\site-packages\onnxruntime")
+os.add_dll_directory(r"C:\Users\mayur\AppData\Local\Programs\Python\Python311\Lib\site-packages\onnxruntime")
 
 import chromadb
 
@@ -38,6 +38,3 @@ class Portfolio:
 
 if __name__ == "__main__":
     print('IN portfolio.py file')
-
-    
-    
