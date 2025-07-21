@@ -3,8 +3,12 @@ from chains import Chain
 from portfolio import Portfolio
 from utils import clean_text
 from langchain_community.document_loaders import WebBaseLoader
-
 import os
+# os.add_dll_directory(r"C:\Users\mayur\AppData\Local\Programs\Python\Python311\Lib\site-packages\onnxruntime")
+
+# streamlit run main.py --server.port 8502
+
+
 os.environ["STREAMLIT_DISABLE_WATCHDOG_WARNINGS"] = "true"
 
 def create_streamlit_app(llm , portfolio, clean_text):
