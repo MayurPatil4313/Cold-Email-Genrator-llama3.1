@@ -1,21 +1,22 @@
 import pandas as pd
 import uuid
-import chromadb
 import os
 # os.add_dll_directory(r"C:\Users\mayur\AppData\Local\Programs\Python\Python311\Lib\site-packages\onnxruntime")
+
+import chromadb
 
 class Portfolio:
     def __init__(self , file_path='D:/Learnbay\Cold Email Genrator llama3.1/app/resource/generated_techstack_portfolio.csv'):
         self.file_path = file_path
         self.df = pd.read_csv(file_path)
-        self.chroma_client = chromadb.Client()
+        self.chroma_client = chromadb.PersistentClient('Vectorstore')
         self.collection = self.chroma_client.get_or_create_collection(name='portfolio')
 
     def load_portfolio(self):
         print('inside load_portfolio')
         print('db name ', self.chroma_client.list_collections())
         # os.add_dll_directory(r"C:\Users\mayur\AppData\Local\Programs\Python\Python311\Lib\site-packages\onnxruntime")
-        # print('adding onnxruntime')
+        print('adding onnxruntime')
 
         if not self.collection.count():
             print('inside the collection present condation')
@@ -29,13 +30,6 @@ class Portfolio:
                 metadatas=metadatas,
                 ids=ids
             )
-            # for idx , row in self.df.iterrows():
-            #     self.collection.add(
-            #         documents=[row['Techstack']],  # wrap in list!
-            #         metadatas=[{'links': row['Links']}],
-            #         ids=[str(uuid.uuid4())]
-            #     )
-
     def query_links(self, skills):
         print('qury executing in query_links')
         print('skills in query_links => ', skills)
