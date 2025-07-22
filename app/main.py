@@ -48,6 +48,8 @@ def create_streamlit_app(llm , portfolio, clean_text):
                     links = portfolio.query_links(skills)
                     email = llm.write_mail(job, links,SENDER_NAME,SERVICE_ORG_NAME)
                     st.code(email, language='markdown')
+                    if st.button("📋 Copy to Clipboard"):
+                        st.toast("Copied!", icon="✅")  
         except Exception as e:
             st.error(f"An Error Occurred: {e}")
 
