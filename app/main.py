@@ -4,6 +4,9 @@ from portfolio import Portfolio
 from utils import clean_text
 from langchain_community.document_loaders import WebBaseLoader
 import os
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 # streamlit run main.py --server.port 8502
 
 # os.environ["STREAMLIT_DISABLE_WATCHDOG_WARNINGS"] = "true"
