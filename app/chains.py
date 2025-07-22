@@ -49,6 +49,7 @@ class Chain:
                 {job_description}
                 
                 ### INSTRUCTION:
+                DEAR hering management,
                 You are {SENDER_NAME}, a business development executive at {SERVICE_ORG_NAME}. {SERVICE_ORG_NAME} is an AI & Software Consulting company dedicated to facilitating
                 the seamless integration of business processes through automated tools. 
                 Over our experience, we have empowered numerous enterprises with tailored solutions, fostering scalability, 
