@@ -26,10 +26,11 @@ def create_streamlit_app(llm , portfolio, clean_text):
     url_input = st.text_input("Enter a URL: ", value='https://careers.nike.com/lead-data-scientist/job/R-62512')
     SENDER_NAME = st.text_input("Sender Name *", placeholder='Enter your Name')
     SERVICE_ORG_NAME = st.text_input("Organization name *", placeholder='Enter organization name')
-    email_length = st.number_input("Email Length*",placeholder='Enter email length in words', min_value=100,
+    email_length = st.number_input("Email Length*",placeholder='Enter email length in words', 
+        min_value=100,
         max_value=300,
         step=1,
-        value=50
+        value=100
     )
 
     submit_button = st.button('Submit')
