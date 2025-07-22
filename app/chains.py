@@ -44,24 +44,44 @@ class Chain:
             
         prompt_email = PromptTemplate.from_template(
             """
-                ### EMAIL (NO PREAMBLE):
-                ### JOB DESCRIPTION:
+                You are {SENDER_NAME}, a Business Development Executive at {SERVICE_ORG_NAME}, a Software Consulting company dedicated to facilitating the seamless integration of business processes through automated tools.
+                Over our experience, we have empowered numerous enterprises with tailored solutions, fostering scalability, process optimization, cost reduction, and heightened overall efficiency.
+
+                Your task is to compose a professional cold email to a potential client regarding the following job post:
                 {job_description}
+
+                Highlight how {SERVICE_ORG_NAME} can fulfill the client's needs as outlined in the job description.
+                Include the most relevant portfolio items from the following list to showcase {SERVICE_ORG_NAME}'s capabilities:
+                {link_list}
+
+                Important Instructions:
+
+                * You must write the email content only.
+
+                * Do not include any preambles, explanations, or introductory text.
+
+                * Begin the response directly with:
+                    “Dear Hiring Management,”
+            """
+            # """
+            #     ### EMAIL (NO PREAMBLE):
+            #     ### JOB DESCRIPTION:
+            #     {job_description}
                 
-                ### INSTRUCTION:
-                DEAR hering management,
-                You are {SENDER_NAME}, a business development executive at {SERVICE_ORG_NAME}. {SERVICE_ORG_NAME} is an Software Consulting company dedicated to facilitating
-                the seamless integration of business processes through automated tools. 
-                Over our experience, we have empowered numerous enterprises with tailored solutions, fostering scalability, 
-                process optimization, cost reduction, and heightened overall efficiency. 
-                Your job is to write a cold email to the client regarding the job mentioned above describing the capability of {SERVICE_ORG_NAME}
-                in fulfilling their needs.
-                Also add the most relevant ones from the following links to showcase {SERVICE_ORG_NAME}'s portfolio: {link_list}
-                Remember you are Mohan, BDE at {SERVICE_ORG_NAME}. 
-                Do not provide a preamble.
-                ### EMAIL (NO PREAMBLE):
+            #     ### INSTRUCTION:
+            #     DEAR hering management,
+            #     You are {SENDER_NAME}, a business development executive at {SERVICE_ORG_NAME}. {SERVICE_ORG_NAME} is an Software Consulting company dedicated to facilitating
+            #     the seamless integration of business processes through automated tools. 
+            #     Over our experience, we have empowered numerous enterprises with tailored solutions, fostering scalability, 
+            #     process optimization, cost reduction, and heightened overall efficiency. 
+            #     Your job is to write a cold email to the client regarding the job mentioned above describing the capability of {SERVICE_ORG_NAME}
+            #     in fulfilling their needs.
+            #     Also add the most relevant ones from the following links to showcase {SERVICE_ORG_NAME}'s portfolio: {link_list}
+            #     Remember you are Mohan, BDE at {SERVICE_ORG_NAME}. 
+            #     Do not provide a preamble.
+            #     ### EMAIL (NO PREAMBLE):
                 
-                """
+            #     """
         )
         chain_email = prompt_email | self.llm
         try:
@@ -81,6 +101,4 @@ class Chain:
 
 if __name__ == "__main__":
     print('IN chains.py file')
-    print(API_KEY)
-    print(SENDER_NAME)
-    print(SERVICE_ORG_NAME)
+    # print(API_KEY)
