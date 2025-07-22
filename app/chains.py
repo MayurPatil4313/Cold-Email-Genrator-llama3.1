@@ -7,8 +7,7 @@ from langchain_core.exceptions import OutputParserException
 from dotenv import load_dotenv
 _ = load_dotenv()
 API_KEY = os.getenv("API_KEY")
-SENDER_NAME = os.getenv("SENDER_NAME")
-SERVICE_ORG_NAME = os.getenv("SERVICE_ORG_NAME")
+
 
 class Chain:
     def __init__(self):
@@ -45,12 +44,13 @@ class Chain:
             
         prompt_email = PromptTemplate.from_template(
             """
+                ### EMAIL (NO PREAMBLE):
                 ### JOB DESCRIPTION:
                 {job_description}
                 
                 ### INSTRUCTION:
                 DEAR hering management,
-                You are {SENDER_NAME}, a business development executive at {SERVICE_ORG_NAME}. {SERVICE_ORG_NAME} is an AI & Software Consulting company dedicated to facilitating
+                You are {SENDER_NAME}, a business development executive at {SERVICE_ORG_NAME}. {SERVICE_ORG_NAME} is an Software Consulting company dedicated to facilitating
                 the seamless integration of business processes through automated tools. 
                 Over our experience, we have empowered numerous enterprises with tailored solutions, fostering scalability, 
                 process optimization, cost reduction, and heightened overall efficiency. 

@@ -15,8 +15,7 @@ import os
 
 from dotenv import load_dotenv
 _ = load_dotenv()
-SENDER_NAME = os.getenv("SENDER_NAME")
-SERVICE_ORG_NAME = os.getenv("SERVICE_ORG_NAME")
+
 # streamlit run main.py --server.port 8502
 
 # os.environ["STREAMLIT_DISABLE_WATCHDOG_WARNINGS"] = "true"
@@ -25,19 +24,30 @@ def create_streamlit_app(llm , portfolio, clean_text):
     st.title(' 📩 Cold Email Generator')
 
     url_input = st.text_input("Enter a URL: ", value='https://careers.nike.com/lead-data-scientist/job/R-62512')
+    SENDER_NAME = st.text_input("Sender Name *", placeholder='Enter your Name')
+    SERVICE_ORG_NAME = st.text_input("Organization name *", placeholder='Enter organization name')
+
     submit_button = st.button('Submit')
 
     if submit_button:
         try:
-            loader = WebBaseLoader([url_input])
-            data = clean_text(loader.load().pop().page_content)
-            portfolio.load_portfolio()
-            jobs = llm.extract_jobs(data)
-            for job in jobs:
-                skills = job.get('skills', [])
-                links = portfolio.query_links(skills)
-                email = llm.write_mail(job, links,SENDER_NAME,SERVICE_ORG_NAME)
-                st.code(email, language='markdown')
+            if SENDER_NAME.strip() == "":
+                st.warning("Name is required.")
+            if url_input.strip() == "":
+                st.warning("URL is required.")
+            if SERVICE_ORG_NAME.strip() == "":
+                st.warning("Organization Name required.")
+
+            else:   
+                loader = WebBaseLoader([url_input])
+                data = clean_text(loader.load().pop().page_content)
+                portfolio.load_portfolio()
+                jobs = llm.extract_jobs(data)
+                for job in jobs:
+                    skills = job.get('skills', [])
+                    links = portfolio.query_links(skills)
+                    email = llm.write_mail(job, links,SENDER_NAME,SERVICE_ORG_NAME)
+                    st.code(email, language='markdown')
         except Exception as e:
             st.error(f"An Error Occurred: {e}")
 
