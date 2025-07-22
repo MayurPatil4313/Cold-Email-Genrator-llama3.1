@@ -1,12 +1,13 @@
+# Override sqlite3 with the version from pysqlite3-binary
+import pysqlite3
+sys.modules["sqlite3"] = pysqlite3.dbapi2
+os.environ["SQLITE_PREFER_PYSQLITE3"] = "1"
 import streamlit as st
 from chains import Chain
 from portfolio import Portfolio
 from utils import clean_text
 from langchain_community.document_loaders import WebBaseLoader
 import os
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 # streamlit run main.py --server.port 8502
 
 # os.environ["STREAMLIT_DISABLE_WATCHDOG_WARNINGS"] = "true"
