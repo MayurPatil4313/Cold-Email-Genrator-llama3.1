@@ -12,6 +12,11 @@ from portfolio import Portfolio
 from utils import clean_text
 from langchain_community.document_loaders import WebBaseLoader
 import os
+
+from dotenv import load_dotenv
+_ = load_dotenv()
+SENDER_NAME = os.getenv("SENDER_NAME")
+SERVICE_ORG_NAME = os.getenv("SERVICE_ORG_NAME")
 # streamlit run main.py --server.port 8502
 
 # os.environ["STREAMLIT_DISABLE_WATCHDOG_WARNINGS"] = "true"
@@ -31,7 +36,7 @@ def create_streamlit_app(llm , portfolio, clean_text):
             for job in jobs:
                 skills = job.get('skills', [])
                 links = portfolio.query_links(skills)
-                email = llm.write_mail(job, links)
+                email = llm.write_mail(job, links,SENDER_NAME,SERVICE_ORG_NAME)
                 st.code(email, language='markdown')
         except Exception as e:
             st.error(f"An Error Occurred: {e}")
