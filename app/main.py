@@ -26,6 +26,11 @@ def create_streamlit_app(llm , portfolio, clean_text):
     url_input = st.text_input("Enter a URL: ", value='https://careers.nike.com/lead-data-scientist/job/R-62512')
     SENDER_NAME = st.text_input("Sender Name *", placeholder='Enter your Name')
     SERVICE_ORG_NAME = st.text_input("Organization name *", placeholder='Enter organization name')
+    email_length = st.number_input("Email Length*",placeholder='Enter email length in words', min_value=100,
+        max_value=300,
+        step=1,
+        value=50
+    )
 
     submit_button = st.button('Submit')
 
@@ -46,7 +51,7 @@ def create_streamlit_app(llm , portfolio, clean_text):
                 for job in jobs:
                     skills = job.get('skills', [])
                     links = portfolio.query_links(skills)
-                    email = llm.write_mail(job, links,SENDER_NAME,SERVICE_ORG_NAME)
+                    email = llm.write_mail(job, links,SENDER_NAME,SERVICE_ORG_NAME,email_length)
                     st.code(email, language='markdown')
         except Exception as e:
             st.error(f"An Error Occurred: {e}")

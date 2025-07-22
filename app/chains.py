@@ -40,7 +40,7 @@ class Chain:
 
         return res if isinstance(res, list) else [res]
 
-    def write_mail(self, job, links, SENDER_NAME, SERVICE_ORG_NAME):
+    def write_mail(self, job, links, SENDER_NAME, SERVICE_ORG_NAME,email_length):
             
         prompt_email = PromptTemplate.from_template(
             """
@@ -55,11 +55,9 @@ class Chain:
                 {link_list}
 
                 Important Instructions:
-
                 * You must write the email content only.
-
                 * Do not include any preambles, explanations, or introductory text.
-
+                * email lenght should by {email_length} not less than that 
                 * Begin the response directly with:
                     “Dear Hiring Management,”
             """
@@ -91,6 +89,7 @@ class Chain:
                     "link_list": links,
                     "SENDER_NAME": SENDER_NAME,
                     "SERVICE_ORG_NAME": SERVICE_ORG_NAME,
+                    'email_length':email_length,
                 }
             )
         except Exception as e:
