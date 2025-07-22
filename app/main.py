@@ -1,7 +1,11 @@
+import sys
+import os
+
 # Override sqlite3 with the version from pysqlite3-binary
 import pysqlite3
 sys.modules["sqlite3"] = pysqlite3.dbapi2
 os.environ["SQLITE_PREFER_PYSQLITE3"] = "1"
+
 import streamlit as st
 from chains import Chain
 from portfolio import Portfolio
