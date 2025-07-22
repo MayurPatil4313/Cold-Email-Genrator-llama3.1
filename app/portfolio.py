@@ -1,12 +1,12 @@
 import pandas as pd
 import uuid
 import os
-os.add_dll_directory(r"C:\Users\mayur\AppData\Local\Programs\Python\Python311\Lib\site-packages\onnxruntime")
+# os.add_dll_directory(r"C:\Users\mayur\AppData\Local\Programs\Python\Python311\Lib\site-packages\onnxruntime")
 
 import chromadb
 
 class Portfolio:
-    def __init__(self , file_path='D:/Learnbay\Cold Email Genrator llama3.1/app/resource/generated_techstack_portfolio.csv'):
+    def __init__(self , file_path='app/resource/generated_techstack_portfolio.csv'):
         self.file_path = file_path
         self.df = pd.read_csv(file_path)
         self.chroma_client = chromadb.PersistentClient('Vectorstore')
