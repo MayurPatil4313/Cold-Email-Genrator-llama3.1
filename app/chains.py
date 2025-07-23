@@ -61,25 +61,6 @@ class Chain:
                 * Begin the response directly with:
                     “Dear Hiring Management,”
             """
-            # """
-            #     ### EMAIL (NO PREAMBLE):
-            #     ### JOB DESCRIPTION:
-            #     {job_description}
-                
-            #     ### INSTRUCTION:
-            #     DEAR hering management,
-            #     You are {SENDER_NAME}, a business development executive at {SERVICE_ORG_NAME}. {SERVICE_ORG_NAME} is an Software Consulting company dedicated to facilitating
-            #     the seamless integration of business processes through automated tools. 
-            #     Over our experience, we have empowered numerous enterprises with tailored solutions, fostering scalability, 
-            #     process optimization, cost reduction, and heightened overall efficiency. 
-            #     Your job is to write a cold email to the client regarding the job mentioned above describing the capability of {SERVICE_ORG_NAME}
-            #     in fulfilling their needs.
-            #     Also add the most relevant ones from the following links to showcase {SERVICE_ORG_NAME}'s portfolio: {link_list}
-            #     Remember you are Mohan, BDE at {SERVICE_ORG_NAME}. 
-            #     Do not provide a preamble.
-            #     ### EMAIL (NO PREAMBLE):
-                
-            #     """
         )
         chain_email = prompt_email | self.llm
         try:
@@ -100,4 +81,4 @@ class Chain:
 
 if __name__ == "__main__":
     print('IN chains.py file')
-    # print(API_KEY)
+    
